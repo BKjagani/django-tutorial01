@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block more_css %}
+
+ <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="title">Home Page</h1>
+
+    <h1 class="header">{{ user.username }}</h1>
+
+    {% if data %}
+        {% for i in data %}
+            <h1>Name : {{ i.name }}</h1>
+            <h1>Price : {{ i.price }}</h1>
+        {% endfor %}
+
+    {% else %}
+    <p>Data not available</p>
+    {% endif %}
+    
+{% endblock %}
+

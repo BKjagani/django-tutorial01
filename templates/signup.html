@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Signup
+{% endblock %}
+
+{% block more_css %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-5 m-auto my-5">
+            <form action="{% url  'signup' %}" method="POST">
+                {% csrf_token %}
+                <h1>Signup</h1>
+                <div class="input-group mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email"
+                        aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="city" class="form-control" placeholder="City" aria-label="City"
+                        aria-describedby="basic-addon1">    
+                </div>
+                <div class="input-group mb-3">
+                    <select class="form-select" name="role" id="floatingSelect" aria-label="Floating label select example" required>
+                        <option selected disabled>Select Your Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="teachrer">Teacher</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password"
+                        aria-label="Password" aria-describedby="basic-addon1">
+                </div>
+                <p class="text-danger">{{err_msg}}</p>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

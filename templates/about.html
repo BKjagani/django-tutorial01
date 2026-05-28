@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block more_css %}
+
+ <link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="title">About Page</h1>
+
+    <h1 class="header">About 2</h1>
+    <img src="{% static 'images/banner.webp' %}" alt="" class="about-img">
+    
+{% endblock %}
+
