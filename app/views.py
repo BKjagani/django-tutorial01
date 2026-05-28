@@ -16,6 +16,10 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
+def contact(request):
+    return render(request, 'contact.html')
+
 def signup(request):
     if request.method == "POST":
         username = request.POST.get('username')
