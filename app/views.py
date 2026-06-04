@@ -4,6 +4,10 @@ from .models import Course, User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+from django.core.mail import send_mail
+import random
+
 # Create your views here.
 
 
@@ -65,3 +69,17 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('login')
+
+def forgot_password(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        user = User.objects.get(email=email)
+        if user:
+            new_pass = str(random.randint(1000, 9999))
+            user.set_password(new_pass)
+            user.save()
+            send_mail("New Password", f"Your New Password is {new_pass}", settings.EMAIL_HOST_USER, [email], fail_silently=False)
+            return redirect('login')
+        else:
+            return render(request, 'forgot_password.html', {'err_msg' : "User not Found"})
+    return render(request, 'forgot_password.html')
